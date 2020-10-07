@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self.Card - Creator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700" rel="stylesheet" />
+</head>
+
+<body
+    class="container mx-auto h-screen bg-purple-900 flex justify-center content-center text-center items-center flex-col">
+    <h1 class="text-gray-100 text-6xl">
+        Tell the world
+        <span class="text-blue-400" id="tell-world">your name.</span>
+    </h1>
+    <form class="w-full max-w-lg mt-10" id="data-form">
+        <div class="flex">
+            <div class="w-full flex justify-center items-center content-center">
+                <div class="flex justify-start content-start items-start flex-col">
+                    <label class="mx-1 block tracking-wide text-gray-200 text-xl font-bold" for="user-name">
+                        Name
+                    </label>
+                    <input
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-4 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="user-name" type="text" placeholder="Jane Doe">
+                </div>
+
+                <button class="transition duration-500 ease-in-out bg-green-500 text-white font-bold py-2 px-4 rounded mx-5 mt-6 transform hover:-translate-y-1 hover:scale-110" id="submit-btn" type="submit">
+                    Submit
+                </button>
+            </div>
+    </form>
+    <script>
+        var savedData = {
+            name: "",
+            intro: "",
+            location: "",
+        }
+        var formQs = ["your name.", "about yourself.", "where you're from."];
+        var data = "none";
+        $("#data-form").submit(function(event) {
+            console.log(savedData.name);
+            event.preventDefault();
+            var userInput = $("#user-name").val();
+            savedData.name = userInput
+        });
+    </script>
+</body>
+
+</html>
