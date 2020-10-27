@@ -1,5 +1,6 @@
 import logging
 import re
+import validators
 from flask import Blueprint, render_template, redirect, url_for, request, flash, jsonify
 from flask_login import login_required, current_user
 import uuid
@@ -64,6 +65,15 @@ def create_endpoint_post():
 def delete_card():
   card_id = request.form.get("card_id")
   card = Components.query.filter_by(id=card_id).first()
+
+  domain = Domain.query.filter_by(endpoint=card.endpoint).first()
+
+  print(domain.endpoint, flush=True)
+  print(card.endpoint, flush=True)
+  print(domain.owner, flush=True)
+  if not domain.owner == current_user.email:
+    return jsonify(status="error")
+
   if card:
     db.session.delete(card)
     db.session.commit()
@@ -92,6 +102,21 @@ def create_new_card():
   body = request.form.get('card-body')
   buttonTitle = request.form.get('card-button-title') or None
   buttonLink = request.form.get('card-button-link') or None
+  if buttonLink and not buttonTitle:
+    buttonLink = None
+    flash("Please add a title to your button")
+    return redirect(url_for('main.create'))
+  if buttonTitle and not buttonLink:
+    buttonTitle = None
+    flash("Please add a link to your button.")
+    return redirect(url_for('main.create'))
+
+  if buttonLink and buttonTitle:
+    validLink = validators.url(buttonLink)
+    if not validLink:
+      flash("Please input a valid link for your button")
+      return redirect(url_for('main.create'))
+
   if(title and body):
     newComponent = Components(endpoint=userEndpoint,title=title, content=body, button=buttonTitle, buttonAction=buttonLink)
     db.session.add(newComponent)

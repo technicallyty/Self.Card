@@ -99,11 +99,24 @@
         .submit-card:hover {
             opacity: 80%;
         }
+        .alert-red {
+          color: red;
+          font-size: 30px;
+          font-family: "Poppins";
+          text-align: center;
+        }
 
 </style>
 <div class="container">
   <h1>Create a Card for your Page.</h1>
   <form method="POST" action="/create">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <h3 class="alert-red">
+            {{ messages[0] }}
+        </h3>
+    {% endif %}
+    {% endwith %}
     <div class="card">
       <div class="form-section">
         <label class="card-label"> title </label>
@@ -138,6 +151,7 @@
       </div>
       <div class="form-section">
         <label class="card-label">Button Link (optional)</label>
+        <label class="card-label" style="font-size: 14px;">Must be of form 'https://link.something'</label>
         <input
           type="text"
           class="card-title"

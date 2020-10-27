@@ -25,9 +25,8 @@
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            background-color: #183D5D;
             margin: 0 100px 50px 100px;
-            min-height: 800px;
+            min-height: 100px;
             max-width: 70%;
             border-radius: 30px;
             margin-left: auto;
@@ -164,7 +163,7 @@
       </p>
       {% if card.button %}
       <button class="card-button">
-        <a href={{card.buttonAction}}>{{card.button}}</a>
+        <a href={{card.buttonAction}} target="_blank">{{card.button}}</a>
       </button>
       {% endif %}
     </div>
