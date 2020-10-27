@@ -1,53 +1,132 @@
 {% extends "base.html" %}
 
   {% block content %}
-  <div class="bg-grey-lighter min-h-screen flex flex-col">
-    <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-        <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <h3 class="py-3 px-3 bg-red-500 text-white rounded text-center">
-                    Email already exists - <span><a class="text-blue-200 underline" href="{{ url_for('auth.login') }}">Login</a></span>
-                </h3>
-            {% endif %}
-            {% endwith %}
-            <h1 class="mb-8 text-3xl text-center">Sign up</h1>
-            <form method="POST" action="/signup">
-                <input 
-                    type="text"
-                    class="block border border-grey-light w-full p-3 rounded mb-4"
-                    name="name"
-                    placeholder="Full Name" />
+  <style>
+.main {
+    background-color: #FFFFFF;
+    width: 400px;
+    height: 500px;
+    margin: 7em auto;
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
 
-                <input 
-                    type="email"
-                    class="block border border-grey-light w-full p-3 rounded mb-4"
-                    name="email"
-                    placeholder="Email" />
+.sign {
+    padding-top: 40px;
+    color: #8C55AA;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+}
 
-                <input 
-                    type="password"
-                    class="block border border-grey-light w-full p-3 rounded mb-4"
-                    name="password"
-                    placeholder="Password" />
-                <input 
-                    type="password"
-                    class="block border border-grey-light w-full p-3 rounded mb-4"
-                    name="confirm_password"
-                    placeholder="Confirm Password" />
-                    <button
-                    type="submit"
-                    class="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-dark focus:outline-none my-1"
-                >Create Account</button>
-            </form>
-        </div>
+.un {
+width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 50px;
+margin-left: 46px;
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
 
-        <div class="text-grey-dark mt-6">
-            Already have an account? 
-            <a class="no-underline border-b border-blue text-blue" href="{{ url_for('auth.login') }}">
-                Log in
-            </a>.
-        </div>
+form.form1 {
+    padding-top: 40px;
+}
+
+.pass {
+        width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 50px;
+margin-left: 46px;
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
+
+
+.un:focus, .pass:focus {
+    border: 2px solid rgba(0, 0, 0, 0.18) !important;
+    
+}
+
+.submit {
+  cursor: pointer;
+    border-radius: 5em;
+    color: #fff;
+    background: linear-gradient(to right, #9C27B0, #E040FB);
+    border: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 35%;
+    font-size: 13px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+.forgot {
+    text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+    color: black;
+    padding-top: 15px;
+}
+
+a {
+    text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+    color: black;
+    text-decoration: none
+}
+
+.login-red {
+    color: blue;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .main {
+        border-radius: 0px;
+    }
+    
+}
+
+    .error-text {
+        color: red;
+    }
+  </style>
+  <div class="main">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <h3 class="error-text">
+            {{ messages[0] }}
+        </h3>
+    {% endif %}
+    {% endwith %}
+    <p class="sign" align="center">Sign Up</p>
+    <form class="form1" method="POST" action="/signup">
+      <input class="un" type="name" name="name" align="center" placeholder="Name">
+      <input class="un" type="email" name="email" align="center" placeholder="Email">
+      <input class="pass" type="password" name="password" align="center" placeholder="Password">
+      <button class="submit" type="submit" align="center">Sign Up</button>
+      <p class="forgot" align="center"><a>Already have an account? <a class='login-red' href="{{ url_for('auth.login') }}">Login</a></p>
     </div>
-</div>
 {% endblock %}

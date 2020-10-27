@@ -1,0 +1,44 @@
+{% extends "base.html" %} 
+{% block title %} 404: Not Found 
+{% endblock %} 
+
+{% block content %}
+<div class="body1">
+<div class="container">
+  <h1 class="h11">404: <span class="test12">Not Found</span></h1>
+  <h2>Can't see anything here.</h2>
+  <img
+    src="{{ url_for('static', filename='img/telescope-404.svg')}}"
+    alt="Girl looking into telescope"
+    height="400px"
+  />
+</div>
+</div>
+<style type="text/css">
+  .body1 {
+    font-family: "Poppins";
+    font-size: 22px;
+    background-color: #072540;
+    color: white;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .h11 {
+    font-size: 4rem;
+    color: white;
+    display: block;
+  }
+
+  .test12 {
+    color: orange;
+  }
+</style>
+{% endblock %}

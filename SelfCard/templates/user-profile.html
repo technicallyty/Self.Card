@@ -42,7 +42,7 @@
             min-height: 200px;
             background-color: #254F6E;
             display: flex;
-            margin: 0px 50px;
+            margin: 50px;
             border-radius: 30px;
             flex-direction: column;
             justify-content: space-around;
@@ -150,40 +150,13 @@
         .no-endpoint {
           align-self: center;
         }
-        .card-wrapper {
-          display: flex;
-          flex-direction: column;
-          margin: 0;
-          padding: 0;
-        }
-        .card-wrapper > img{
-          margin-left: 75px;
-          margin-bottom: 10px;
-          cursor: pointer;
-        }
-        
 </style>
 <div class="container">
-  <header>
-    {% if endpoint %}
-    <button class="floating-button" onclick="window.location.href='{{ url_for('main.create') }}';">Add Card</button>
-    {% endif %}
-    <h1>Welcome <span>{{name}}!</span></h1>
-  </header>
-  {% if endpoint %}
   <section class="pages">
-    <h2 class="endpoint-header">self.card/{{endpoint}}</h2>
+    <h2 class="endpoint-header">{{name}}</h2>
   </section>
   <section class="display-cards">
     {% for card in cards %}
-    <div class="card-wrapper">
-      <img
-      class="delete-card"
-      id="{{card.id}}"" 
-      src="{{ url_for('static', filename='img/trash.svg')}}" 
-      alt="Trash can icon"
-      height="25"
-      width="25" />
     <div class="card">
       <h4 class="card-title">{{card.title}}</h4>
       <p class="card-body">
@@ -195,30 +168,6 @@
       </button>
       {% endif %}
     </div>
-  </div>
     {% endfor %}
-  {% else %}
-    <h1 class="no-endpoint">You don't have an endpoint yet!</h1>
-    <button class="endpoint-creator" onclick="window.location.href='{{ url_for('main.create_endpoint') }}';">Create an Endpoint</button>
-  {% endif %}
-
 </div>
-<script>
-  $(".delete-card").click(function(e){
-    var id = e.target.id
-    $.ajax({
-      type:"DELETE",
-      url:"/delete-card",
-      data: {card_id: id},
-      dataType: "text",
-      success: function(data){
-        alert("Successfully Deleted.")
-        location.reload(true)
-      },
-      error: function(data) {
-        alert("Error deleting card. Please try again later.")
-      }
-    })
-  })
-</script>
 {% endblock %}

@@ -38,7 +38,7 @@ def sign_post():
   email = request.form.get('email')
   name = request.form.get('name')
   password = request.form.get('password')
-
+  
   user = User.query.filter_by(email=email).first()  # if this returns a user, then the email already exists in db
 
   if user:
@@ -58,3 +58,4 @@ def sign_post():
 def logout():
   logout_user()
   return redirect(url_for('main.index'))
+
