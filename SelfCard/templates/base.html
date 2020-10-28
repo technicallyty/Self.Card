@@ -297,7 +297,7 @@ p{
           <div class="header-right">
             {% if not current_user.is_authenticated %}
             <a href="{{ url_for('auth.login') }}">Login</a>
-            <a href="{{ url_for('auth.signup') }}">SignUp</a>
+            <a href="{{ url_for('auth.signup') }}">Sign Up</a>
             {% endif %}
             {% if current_user.is_authenticated %}
             <a href="{{ url_for('main.profile') }}">Profile</a>

@@ -3,4 +3,5 @@ env
 __pycache__
 .vscode
 temp/
-db.sqlite
+*.sqlite
+SelfCard/db.sqlite

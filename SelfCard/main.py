@@ -68,9 +68,6 @@ def delete_card():
 
   domain = Domain.query.filter_by(endpoint=card.endpoint).first()
 
-  print(domain.endpoint, flush=True)
-  print(card.endpoint, flush=True)
-  print(domain.owner, flush=True)
   if not domain.owner == current_user.email:
     return jsonify(status="error")
 
