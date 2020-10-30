@@ -111,6 +111,7 @@ a {
 
     .error-text {
         color: red;
+        text-align: center;
     }
   </style>
   <div class="main">
@@ -123,9 +124,9 @@ a {
     {% endwith %}
     <p class="sign" align="center">Sign Up</p>
     <form class="form1" method="POST" action="/signup">
-      <input class="un" type="name" name="name" align="center" placeholder="Name">
-      <input class="un" type="email" name="email" align="center" placeholder="Email">
-      <input class="pass" type="password" name="password" align="center" placeholder="Password">
+      <input class="un" type="name" name="name" align="center" placeholder="Name" required>
+      <input class="un" type="email" name="email" align="center" placeholder="Email" required>
+      <input class="pass" type="password" name="password" align="center" placeholder="Password" required>
       <button class="submit" type="submit" align="center">Sign Up</button>
       <p class="forgot" align="center"><a>Already have an account? <a class='login-red' href="{{ url_for('auth.login') }}">Login</a></p>
     </div>

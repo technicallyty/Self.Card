@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
+import validators
 from .models import User
 from . import db
 
@@ -38,6 +39,12 @@ def sign_post():
   email = request.form.get('email')
   name = request.form.get('name')
   password = request.form.get('password')
+
+  valid = validators.email(email)
+
+  if not valid:
+    flash('Please provide a valid email')
+    return redirect(url_for('auth.signup'))
   
   user = User.query.filter_by(email=email).first()  # if this returns a user, then the email already exists in db
 
