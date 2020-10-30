@@ -26,7 +26,7 @@ If you'd like to run a local version instance of this app please follow these st
 
 ### Prerequisites
 
-You must have python 3 installed.
+You must have python 3.x installed.
 
 ## Built With
 
