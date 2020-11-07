@@ -2,6 +2,8 @@
 
 A web app for users to build micro web pages. Built with Flask.
 
+Our video presentation: https://youtu.be/Dri2cALzUR4
+
 ## Summary
 
   - [Getting Started](#getting-started)
